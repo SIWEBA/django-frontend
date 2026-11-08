@@ -24,20 +24,18 @@ En desarrollo de una primera versión funcional que corresponderá a un prototip
 
 ## Estructura del repositorio
 ```txt
-django-backend/      # API y lógica del servidor desarrolladas con Django
+django-frontend/      # API y lógica del servidor desarrolladas con Django
     ├── config/          # Configuración general, rutas y despliegue de Django
-    ├── estaciones/      # Aplicación para gestionar estaciones meteorológicas
-    ├── usuarios/        # Aplicación para gestionar usuarios
-    └── docs/            # Documentación técnica del backend
+    ├── dashboard/      # Aplicación para gestionar estaciones meteorológicas
 ```
 
 ## Versión o Sprint actual
-Sprint II
+Sprint III
 
 
 ## Instrucciones para consultar o reproducir el proyecto
-Para comenzar, esto solo es el Backend del proyecto. 
-El resto del proyecto se encuntra en la organización principal del repositorio. (https://github.com/orgs/SIWEBA/repositories)
+Para comenzar, esto solo es una base sencilla Frontend del proyecto. 
+El resto del proyecto se encuentra en la organización principal del repositorio. (https://github.com/orgs/SIWEBA/repositories)
 
 ### Ejecución del backend
 
