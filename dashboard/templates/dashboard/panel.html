@@ -1,0 +1,13 @@
+{% extends "dashboard/base.html" %}
+
+{% block titulo %}Panel de Control - SIWEBA{% endblock %}
+{% block encabezado %}Panel Principal{% endblock %}
+
+{% block contenido %}
+<div class="alert alert-success shadow-sm" role="alert">
+    <h4 class="alert-heading">¡Bienvenido, {{ user.username }}!</h4>
+    <p>Has iniciado sesión correctamente en el sistema SIWEBA.</p>
+    <hr>
+    <p class="mb-0">Desde este panel podrás gestionar tus estaciones Arduino y cargar nuevos datos meteorológicos.</p>
+</div>
+{% endblock %}

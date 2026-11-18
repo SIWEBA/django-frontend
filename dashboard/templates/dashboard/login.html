@@ -1,0 +1,27 @@
+{% extends "dashboard/base.html" %}
+
+{% block titulo %}Iniciar Sesión - SIWEBA{% endblock %}
+{% block encabezado %}Acceso al Sistema{% endblock %}
+
+{% block contenido %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow-sm mt-4">
+            <div class="card-body p-4">
+                <h4 class="card-title text-center mb-4">Iniciar Sesión</h4>
+                
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary w-100 mt-3">Entrar</button>
+                </form>
+
+                <hr class="my-4">
+                <p class="text-center mb-0">
+                    ¿No tienes una cuenta? <a href="{% url 'registro' %}">Regístrate aquí</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

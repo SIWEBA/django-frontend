@@ -1,0 +1,144 @@
+:root {
+    --azul-oscuro: #123047;
+    --azul: #176b87;
+    --turquesa: #64ccc5;
+    --fondo: #f4f7fa;
+    --blanco: #ffffff;
+    --texto: #25313c;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    color: var(--texto);
+    background-color: var(--fondo);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.menu-lateral {
+    width: 250px;
+    min-height: 100vh;
+    padding: 28px 20px;
+    color: var(--blanco);
+    background: linear-gradient(
+        180deg,
+        var(--azul-oscuro),
+        var(--azul)
+    );
+}
+
+.logo {
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.subtitulo {
+    margin-top: 4px;
+    color: #cce8ed;
+    font-size: 14px;
+}
+
+.menu-lateral .nav-link {
+    margin-bottom: 8px;
+    padding: 12px 14px;
+    color: #e8f5f7;
+    border-radius: 8px;
+}
+
+.menu-lateral .nav-link:hover,
+.menu-lateral .nav-link.activo {
+    color: var(--blanco);
+    background-color: rgba(255, 255, 255, 0.16);
+}
+
+.contenido {
+    width: calc(100% - 250px);
+}
+
+.barra-superior {
+    min-height: 70px;
+    padding: 15px 28px;
+    background-color: var(--blanco);
+    box-shadow: 0 2px 10px rgba(19, 48, 71, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.titulo-pagina {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.tarjeta-metrica,
+.panel {
+    padding: 22px;
+    background-color: var(--blanco);
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(19, 48, 71, 0.08);
+}
+
+.tarjeta-metrica span,
+.tarjeta-metrica small {
+    display: block;
+    color: #71808d;
+}
+
+.tarjeta-metrica strong {
+    display: block;
+    margin: 8px 0;
+    color: var(--azul);
+    font-size: 27px;
+}
+
+.panel {
+    min-height: 280px;
+}
+
+.grafica-temporal {
+    height: 190px;
+    margin-top: 25px;
+    border: 2px dashed #bdd1da;
+    border-radius: 10px;
+    color: #71808d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.estado {
+    margin: 22px 0;
+    font-weight: 600;
+}
+
+.indicador {
+    width: 11px;
+    height: 11px;
+    margin-right: 8px;
+    border-radius: 50%;
+    background-color: #27ae60;
+    display: inline-block;
+}
+
+@media (max-width: 768px) {
+    .menu-lateral {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .contenido {
+        width: 100%;
+    }
+
+    body > .d-flex {
+        flex-direction: column;
+    }
+
+    .barra-superior {
+        padding: 15px;
+    }
+}

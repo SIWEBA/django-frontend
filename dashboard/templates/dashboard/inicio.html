@@ -3,10 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel principal</title>
+    
+    <title>SIWEBA</title>
+
+    <link 
+        rel="stylesheet" 
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+        }
+
+        .barra-superior {
+            height: 70px;
+            padding: 0 40px;
+            background-color: #173f6b;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nombre-proyecto {
+            margin: 0;
+            font-size: 26px;
+        }
+
+        .navegacion {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .navegacion a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .boton-registro {
+            padding: 11px 18px;
+            border-radius: 6px;
+            background-color: #f2b705;
+            color: #172033 !important;
+        }
+
+        #mapa {
+            height: calc(100vh - 70px);
+            width: 100%;
+        }
+
+        .leyenda {
+            padding: 9px 12px;
+            border-radius: 6px;
+            background-color: white;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.35);
+        }
+
+        .indicador {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin-right: 6px;
+            border-radius: 50%;
+            background-color: #20a464;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Panel principal</h1>
-    <p>El frontend del sistema está funcionando correctamente.</p>
+    <header class="barra-superior">
+        <h1 class="nombre-proyecto">SIWEBA</h1>
+
+        <nav class="navegacion">
+            <a href="#">Iniciar sesión</a>
+            <a href="#" class="boton-registro">Registrarse</a>
+        </nav>
+    </header>
+
+    <main>
+        <div id="mapa"></div>
+    </main>
+
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9coqIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin="">
+    </script>
+
+    <script>
+        // Ubicación aproximada de CUCEI para esta primera demostración.
+        const latitudCucei = 20.6565;
+        const longitudCucei = -103.3255;
+
+        const mapa = L.map("mapa").setView(
+            [latitudCucei, longitudCucei],
+            15
+        );
+
+        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+            attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(mapa);
+
+        const estacionCucei = L.circleMarker(
+            [latitudCucei, longitudCucei],
+            {
+                radius: 9,
+                color: "white",
+                weight: 2,
+                fillColor: "#20a464",
+                fillOpacity: 1
+            }
+        ).addTo(mapa);
+
+        estacionCucei.bindPopup(`
+            <strong>Estación CUCEI</strong><br>
+            Estado: demostración<br>
+            Datos todavía no conectados
+        `);
+
+        const leyenda = L.control({ position: "bottomleft" });
+
+        leyenda.onAdd = function () {
+            const contenedor = L.DomUtil.create("div", "leyenda");
+
+            contenedor.innerHTML = `
+                <span class="indicador"></span>
+                Estación de demostración
+            `;
+
+            return contenedor;
+        };
+
+        leyenda.addTo(mapa);
+    </script>
 </body>
 </html>
