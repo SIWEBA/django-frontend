@@ -47,13 +47,14 @@ Este proyecto contiene la interfaz de usuario, el tablero de control (dashboard)
 
 Actualmente el frontend cuenta con los siguientes módulos operativos:
 
-* [x] **Layout Base Dinámico (`base.html`):** Barra lateral de navegación adaptativa, cabecera de sesión y contenedor central con el bloque `{% block contenido %}`.
-* [x] **Módulo de Autenticación de Usuarios:**
+**Layout Base Dinámico (`base.html`):** Barra lateral de navegación adaptativa, cabecera de sesión y contenedor central con el bloque `{% block contenido %}`.
+**Módulo de Autenticación de Usuarios:**
   * Registro de usuarios con validación nativa (`UserCreationForm`).
   * Inicio de Sesión seguro (`AuthenticationForm`).
   * Control de acceso a rutas privadas (`@login_required`).
   * Cierre de sesión y estado dinámico en la cabecera.
-* [x] **Panel de Control Base (`panel.html`):** Vista de bienvenida estilizada para usuarios autenticados.
+
+**Panel de Control Base (`panel.html`):** Vista de bienvenida estilizada para usuarios autenticados.
 
 ---
 
