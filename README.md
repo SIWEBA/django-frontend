@@ -1,56 +1,113 @@
-# SIWEBA — Backend Django
+SIWEBA - Dashboard & Frontend Layer
 
-## Nombre del proyecto
-Diseño e implementación de un sistema web para el monitoreo de estaciones meteorológicas basadas en Arduino.
+¡Bienvenido al repositorio Frontend de SIWEBA (Sistema Web Meteorológico)! Este proyecto contiene la interfaz de usuario, el tablero de control (dashboard) y la capa de presentación desarrollada con Django y Bootstrap para la visualización e interacción con los módulos de monitoreo meteorológico Arduino.
 
-## Breve descripción
-La solución consiste en el desarrollo de una plataforma web que permite integrar estaciones meteorológicas de usuarios e instituciones en una red colaborativa. En esta plataforma, los datos generados (temperatura, humedad, presión atmosférica, etc.) pueden ser compartidos y consultados de manera accesible y en tiempo real. El sistema se compone de dos subsistemas interconectados: una estación meteorológica de hardware basada en Arduino y una plataforma web de software desarrollada en Django para almacenar, validar y visualizar los datos.
+Stack Tecnológico
 
-## Objetivo general
-Crear una estación meteorológica funcional con Arduino y una plataforma web para almacenar y consultar libremente los datos que esta recolecta
+Framework Principal: Django 6.1.1 (Motor de Vistas y Templates)
 
-## Mentor
-Dr. Juan José López Cisneros.
+Lenguaje Backend Frontend: Python 3.12+
 
-## Project Leader
-Primitivo Oyoque Vargas
+Framework Estilos & UI: Bootstrap 5.3.8
 
-## Integrantes del equipo
-- Casandra Jazmín Rodríguez Flores 
-- Primitivo Oyoque Vargas
+Base de Datos (Desarrollo Local): SQLite 3 (db.sqlite3)
 
-## Estado actual
-En desarrollo de una primera versión funcional que corresponderá a un prototipo mínimo viable, el cual estará enfocado en la recolección, almacenamiento, visualización y consulta de datos meteorológicos.
+Hojas de Estilo: CSS3 personalizado (dashboard/static/dashboard/css/estilos.css)
 
-## Estructura del repositorio
-```txt
-django-frontend/      # API y lógica del servidor desarrolladas con Django
-    ├── config/          # Configuración general, rutas y despliegue de Django
-    ├── dashboard/      # Aplicación para gestionar estaciones meteorológicas
-```
+Arquitectura de Interfaz: Sistema de Herencia de Plantillas (Django Template Engine)
 
-## Versión o Sprint actual
-Sprint III
+Estructura del Proyecto
+
+frontend/
+├── config/                  # Configuración global del proyecto Django (settings, urls, wsgi)
+│   ├── settings.py          # Configuración de base de datos, apps y estáticos
+│   └── urls.py              # Enrutador principal del sistema
+├── dashboard/               # Aplicación principal de la interfaz
+│   ├── static/              # Archivos estáticos (CSS, JS, imágenes)
+│   │   └── dashboard/css/
+│   │       └── estilos.css  # Estilos personalizados de SIWEBA
+│   ├── templates/           # Plantillas HTML
+│   │   └── dashboard/
+│   │       ├── base.html    # Plantilla maestra (Layout principal con Aside & Header)
+│   │       ├── inicio.html  # Landing page / Inicio público
+│   │       ├── login.html   # Formulario de inicio de sesión
+│   │       ├── registro.html# Formulario de alta de usuario
+│   │       └── panel.html   # Panel de control de usuario (Dashboard protegido)
+│   ├── admin.py             # Registro de modelos en el panel de admin
+│   ├── models.py            # Modelos de datos locales / representaciones UI
+│   ├── views.py             # Lógica de presentación y autenticación
+│   └── urls.py              # Rutas internas de la app dashboard
+├── manage.py                # Script de gestión de Django
+└── requirements.txt         # Dependencias de Python
 
 
-## Instrucciones para consultar o reproducir el proyecto
-Para comenzar, esto solo es una base sencilla Frontend del proyecto. 
-El resto del proyecto se encuentra en la organización principal del repositorio. (https://github.com/orgs/SIWEBA/repositories)
+Estado de Desarrollo e Implementación
 
-### Ejecución del backend
+Actualmente el frontend cuenta con los siguientes módulos operativos:
 
-Clonar el repositorio:
-```bash
-git clone https://github.com/SIWEBA/django-backend
-```
+[x] Layout Base Dinámico (base.html): Barra lateral de navegación adaptativa, cabecera de sesión y contenedor central con el bloque {% block contenido %}.
 
-Acceder al directorio del proyecto:
-```bash
-cd django-backend
-```
-Instalar las dependencias del proyecto:
-```bash
-python3 -m pip install -r requirements.txt
-```
+[x] Módulo de Autenticación de Usuarios:
 
-Configurar la conexión PostgreSQL en `.env` con `DATABASE_URL` o con las variables
+Registro de usuarios con validación nativa (UserCreationForm).
+
+Inicio de Sesión seguro (AuthenticationForm).
+
+Control de acceso a rutas privadas (@login_required).
+
+Cierre de sesión y estado dinámico en la cabecera.
+
+[x] Panel de Control Base (panel.html): Vista de bienvenida estilizada para usuarios autenticados.
+
+[ ] Próximos Pasos:
+
+Integración de widgets/tarjetas para la visualización de métricas meteorológicas (Temperatura, Humedad, Viento).
+
+Listado y control de Estaciones Meteorológicas conectadas (Arduino).
+
+Formulario e interfaz para carga manual/automatizada de datos meteorológicos.
+
+Conexión con el servicio backend remoto / Base de datos centralizada.
+
+Instalación y Configuración Local
+
+Sigue estos pasos para poner a funcionar el proyecto frontend en tu entorno local:
+
+1. Clonar el repositorio
+
+git clone <URL_DEL_REPOSITORIO_FRONTEND>
+cd SIWEBA/frontend
+
+
+2. Crear y activar el entorno virtual
+
+En Windows:
+
+python -m venv venv
+.\venv\Scripts\activate
+
+
+En macOS/Linux:
+
+python3 -m venv venv
+source venv/bin/activate
+
+
+3. Instalar dependencias
+
+pip install -r requirements.txt
+
+
+(Nota: Asegúrate de tener Django 6.1.1 o la versión especificada).
+
+4. Aplicar las migraciones locales
+
+python manage.py migrate
+
+
+5. Iniciar el servidor de desarrollo
+
+python manage.py runserver
+
+
+Visita http://127.0.0.1:8000/ en tu navegador para interactuar con la aplicación.
