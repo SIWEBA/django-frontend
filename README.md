@@ -1,6 +1,7 @@
 # SIWEBA - Dashboard & Frontend Layer
 
-Repositorio Frontend de **SIWEBA** (Sistema Web Meteorológico)
+Repositorio Frontend de **SIWEBA** (Sistema Web Meteorológico).
+
 Este proyecto contiene la interfaz de usuario, el tablero de control (dashboard) y la capa de presentación desarrollada con **Django** y **Bootstrap** para la visualización e interacción con los módulos de monitoreo meteorológico Arduino.
 
 ---
