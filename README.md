@@ -1,113 +1,90 @@
-SIWEBA - Dashboard & Frontend Layer
+# SIWEBA - Dashboard & Frontend Layer
 
-¡Bienvenido al repositorio Frontend de SIWEBA (Sistema Web Meteorológico)! Este proyecto contiene la interfaz de usuario, el tablero de control (dashboard) y la capa de presentación desarrollada con Django y Bootstrap para la visualización e interacción con los módulos de monitoreo meteorológico Arduino.
+¡Repositorio Frontend de **SIWEBA** (Sistema Web Meteorológico)! Este proyecto contiene la interfaz de usuario, el tablero de control (dashboard) y la capa de presentación desarrollada con **Django** y **Bootstrap** para la visualización e interacción con los módulos de monitoreo meteorológico Arduino.
 
-Stack Tecnológico
+---
 
-Framework Principal: Django 6.1.1 (Motor de Vistas y Templates)
+## Stack Tecnológico
 
-Lenguaje Backend Frontend: Python 3.12+
+* **Framework Principal:** Django 6.1.1 (Motor de Vistas y Templates)
+* **Lenguaje Backend Frontend:** Python 3.12+
+* **Framework Estilos & UI:** Bootstrap 5.3.8
+* **Base de Datos (Desarrollo Local):** SQLite 3 (`db.sqlite3`)
+* **Hojas de Estilo:** CSS3 personalizado (`dashboard/static/dashboard/css/estilos.css`)
+* **Arquitectura de Interfaz:** Sistema de Herencia de Plantillas (Django Template Engine)
 
-Framework Estilos & UI: Bootstrap 5.3.8
+---
 
-Base de Datos (Desarrollo Local): SQLite 3 (db.sqlite3)
+## Estructura del Proyecto
 
-Hojas de Estilo: CSS3 personalizado (dashboard/static/dashboard/css/estilos.css)
+    frontend/
+    ├── config/                     # Configuración global del proyecto Django (settings, urls, wsgi)
+    │   ├── settings.py             # Configuración de base de datos, apps y estáticos
+    │   └── urls.py                 # Enrutador principal del sistema
+    ├── dashboard/                  # Aplicación principal de la interfaz
+    │   ├── static/                 # Archivos estáticos (CSS, JS, imágenes)
+    │   │   └── dashboard/css/
+    │   │       └── estilos.css     # Estilos personalizados de SIWEBA
+    │   ├── templates/              # Plantillas HTML
+    │   │   └── dashboard/
+    │   │       ├── base.html       # Plantilla maestra (Layout principal con Aside & Header)
+    │   │       ├── inicio.html     # Landing page / Inicio público
+    │   │       ├── login.html      # Formulario de inicio de sesión
+    │   │       ├── registro.html   # Formulario de alta de usuario
+    │   │       └── panel.html      # Panel de control de usuario (Dashboard protegido)
+    │   ├── admin.py                # Registro de modelos en el panel de admin
+    │   ├── models.py               # Modelos de datos locales / representaciones UI
+    │   ├── views.py                # Lógica de presentación y autenticación
+    │   └── urls.py                 # Rutas internas de la app dashboard
+    ├── manage.py                   # Script de gestión de Django
+    └── requirements.txt            # Dependencias de Python
 
-Arquitectura de Interfaz: Sistema de Herencia de Plantillas (Django Template Engine)
+---
 
-Estructura del Proyecto
-
-frontend/
-├── config/                  # Configuración global del proyecto Django (settings, urls, wsgi)
-│   ├── settings.py          # Configuración de base de datos, apps y estáticos
-│   └── urls.py              # Enrutador principal del sistema
-├── dashboard/               # Aplicación principal de la interfaz
-│   ├── static/              # Archivos estáticos (CSS, JS, imágenes)
-│   │   └── dashboard/css/
-│   │       └── estilos.css  # Estilos personalizados de SIWEBA
-│   ├── templates/           # Plantillas HTML
-│   │   └── dashboard/
-│   │       ├── base.html    # Plantilla maestra (Layout principal con Aside & Header)
-│   │       ├── inicio.html  # Landing page / Inicio público
-│   │       ├── login.html   # Formulario de inicio de sesión
-│   │       ├── registro.html# Formulario de alta de usuario
-│   │       └── panel.html   # Panel de control de usuario (Dashboard protegido)
-│   ├── admin.py             # Registro de modelos en el panel de admin
-│   ├── models.py            # Modelos de datos locales / representaciones UI
-│   ├── views.py             # Lógica de presentación y autenticación
-│   └── urls.py              # Rutas internas de la app dashboard
-├── manage.py                # Script de gestión de Django
-└── requirements.txt         # Dependencias de Python
-
-
-Estado de Desarrollo e Implementación
+## Estado de Desarrollo e Implementación
 
 Actualmente el frontend cuenta con los siguientes módulos operativos:
 
-[x] Layout Base Dinámico (base.html): Barra lateral de navegación adaptativa, cabecera de sesión y contenedor central con el bloque {% block contenido %}.
+* [x] **Layout Base Dinámico (`base.html`):** Barra lateral de navegación adaptativa, cabecera de sesión y contenedor central con el bloque `{% block contenido %}`.
+* [x] **Módulo de Autenticación de Usuarios:**
+  * Registro de usuarios con validación nativa (`UserCreationForm`).
+  * Inicio de Sesión seguro (`AuthenticationForm`).
+  * Control de acceso a rutas privadas (`@login_required`).
+  * Cierre de sesión y estado dinámico en la cabecera.
+* [x] **Panel de Control Base (`panel.html`):** Vista de bienvenida estilizada para usuarios autenticados.
 
-[x] Módulo de Autenticación de Usuarios:
+---
 
-Registro de usuarios con validación nativa (UserCreationForm).
+## Instalación y Ejecución Local
 
-Inicio de Sesión seguro (AuthenticationForm).
+Sigue estos pasos para levantar el entorno de desarrollo en tu máquina local:
 
-Control de acceso a rutas privadas (@login_required).
+1. **Clonar el repositorio e ingresar a la carpeta:**
 
-Cierre de sesión y estado dinámico en la cabecera.
+       git clone <URL_DEL_REPOSITORIO_FRONTEND>
+       cd frontend
 
-[x] Panel de Control Base (panel.html): Vista de bienvenida estilizada para usuarios autenticados.
+2. **Crear y activar el entorno virtual:**
+   * **Windows (PowerShell):**
 
-[ ] Próximos Pasos:
+         python -m venv venv
+         .\venv\Scripts\activate
 
-Integración de widgets/tarjetas para la visualización de métricas meteorológicas (Temperatura, Humedad, Viento).
+   * **Linux / macOS:**
 
-Listado y control de Estaciones Meteorológicas conectadas (Arduino).
+         python3 -m venv venv
+         source venv/bin/activate
 
-Formulario e interfaz para carga manual/automatizada de datos meteorológicos.
+3. **Instalar dependencias:**
 
-Conexión con el servicio backend remoto / Base de datos centralizada.
+       pip install -r requirements.txt
 
-Instalación y Configuración Local
+4. **Ejecutar migraciones de base de datos:**
 
-Sigue estos pasos para poner a funcionar el proyecto frontend en tu entorno local:
+       python manage.py migrate
 
-1. Clonar el repositorio
+5. **Iniciar el servidor de desarrollo:**
 
-git clone <URL_DEL_REPOSITORIO_FRONTEND>
-cd SIWEBA/frontend
+       python manage.py runserver
 
-
-2. Crear y activar el entorno virtual
-
-En Windows:
-
-python -m venv venv
-.\venv\Scripts\activate
-
-
-En macOS/Linux:
-
-python3 -m venv venv
-source venv/bin/activate
-
-
-3. Instalar dependencias
-
-pip install -r requirements.txt
-
-
-(Nota: Asegúrate de tener Django 6.1.1 o la versión especificada).
-
-4. Aplicar las migraciones locales
-
-python manage.py migrate
-
-
-5. Iniciar el servidor de desarrollo
-
-python manage.py runserver
-
-
-Visita http://127.0.0.1:8000/ en tu navegador para interactuar con la aplicación.
+   El sistema estará disponible en: `http://127.0.0.1:8000/`
